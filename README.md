@@ -1,70 +1,8 @@
-# Getting Started with Create React App
+Part 1: Organization of Components:
+The Christmas shopping website contains a display of items section and an aggregator section (or the cart of the customer section.) For the main section displaying the items that are available, components such as Filter, Products are used. For the aggregator section, Cart component is used. The functions component is used to pass down the event to render the items that appear on the page and change state according to actions triggered in Filter or Cart section. The library.json file is used to store all the information about the christmas items. The the Functions component, being passed down to App.js, would render the final webpage.
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Part 2: Data Passed down through components & User interaction in changing state:
+Example 1: Say the user clicks on "Order by Price" in the Filter component, and select "lowest"; this action will trigger the onChange, which uses props to call the function sortProducts in Functions, this function set state so that sort in the constructor would update to "lowest" and the function sorts the products by price from lowest to highest. The function is called in the render and the latest state is updated to reflect the sorted products on the webpage. Similarly, other filters like "Size" and "Category" follows the same logic. 
 
-## Available Scripts
+Example 2: For the aggregators, say the user wants to buy two sets of fuzzy fluffy socks. The user clicks on "Add to Cart", this action will trigger the onClick in the Cart component, which uses props to call the function addToCart in Functions. This function set state so that the item will be pushed to the empty list called cartItems in the constructor if the item was not there originally. If the item was there originally, the aggregator would update the number of that particular item in the Cart. The user can also add the number of items in the Cart section using the same function. However, users cannot reduce the number of the fuzzy fluffy socks below one in the Cart section by clicking on the "-", instead they will need to click on "remove", so that the action calls function removeFromCart in Functions and pull that item from the cartItems list.
 
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
