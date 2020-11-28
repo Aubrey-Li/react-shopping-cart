@@ -19,7 +19,7 @@ export default class Cart extends Component {
             </div>
             <div>
                 <div className="cart">
-                    <ul className="cart-items">
+                    <ul className="cart-items"> {/* render of each item in the cart */}
                         {cartItems.map(item => (
                             <li key={item._id}>
                             <div>
@@ -28,7 +28,7 @@ export default class Cart extends Component {
                             <div>
                                 <div>{item.title}</div>
                                 <div className="right">
-                                    <div className="incrementor">
+                                    <div className="incrementor"> {/* incrementor, decrementor, and remove on the item card in the aggregator section */}
                                         <button className="btn btn-outline-success" onClick={()=>this.props.decrement(item)}>-</button>
                                         <h5>{item.count}</h5>
                                         <button className="btn btn-outline-success" onClick={()=>this.props.addToCart(item)}>+</button>
@@ -43,7 +43,7 @@ export default class Cart extends Component {
                         </li>
                         ))}       
                     </ul>
-                </div>
+                </div> {/* below: the aggregator total price function */}
                 {cartItems.length !== 0 && (
                     <div className="cart">
                     <div className="total">

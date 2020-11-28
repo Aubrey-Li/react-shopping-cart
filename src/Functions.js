@@ -17,7 +17,8 @@ class Functions extends React.Component {
       sortedProducts: [],
     };
   }
-
+/* Above: constructor & state;
+below: sortProducts function would could be triggered by onChange in Filter */
   sortProducts = (event) => {
     const sort = event.target.value;
     console.log(event.target.value);
@@ -40,10 +41,11 @@ class Functions extends React.Component {
     }));
   };
 
+  /* filterProducts function would could be triggered by onChange in Filter when selecting sizes*/
   filterProducts = event => {
     console.log(event.target.value);
-    if (event.target.value === "") {
-      if (this.state.category === "") {
+    if (event.target.value === "") { 
+      if (this.state.category === "") { /* when user select "ALL" for both size and category*/
         this.setState({size: event.target.value, 
           products: library.products
           .slice()
@@ -61,7 +63,7 @@ class Functions extends React.Component {
                 : -1
           )
       })}
-      else {
+      else { /* when user select "ALL" for size, but category has exiting selection*/
         this.setState({size: event.target.value, 
           products: library.products
           .slice()
@@ -85,7 +87,7 @@ class Functions extends React.Component {
       } 
     }
     else {
-      if (this.state.category === "") {
+      if (this.state.category === "") { /* when user select a size, category set to "All"*/
         this.setState({size: event.target.value, 
           products: library.products
           .slice()
@@ -106,7 +108,7 @@ class Functions extends React.Component {
             (product) => product.availableSizes.indexOf(event.target.value) >= 0
           )
       })}
-      else {
+      else { /* when user select a size, and category has exiting selection*/
         this.setState({size: event.target.value, 
           products: library.products
           .slice()
@@ -136,7 +138,7 @@ class Functions extends React.Component {
   filterCategory = event => {
     console.log(event.target.value);
     if (event.target.value === "") {
-      if (this.state.size === "") {
+      if (this.state.size === "") { /* when size and category both "ALL" */
         this.setState({category: event.target.value, 
           products: library.products
           .slice()
@@ -154,7 +156,7 @@ class Functions extends React.Component {
                 : -1
           )
       })}
-      else {
+      else { /* when category is "ALL", size has preexisting selection */
         this.setState({category: event.target.value, 
           products: library.products
           .slice()
@@ -178,7 +180,7 @@ class Functions extends React.Component {
       } 
     }
     else {
-      if (this.state.size === "") {
+      if (this.state.size === "") { /* when size is "All", user selects a category */
         this.setState({category: event.target.value, 
           products: library.products
           .slice()
@@ -199,7 +201,7 @@ class Functions extends React.Component {
             (product) => product.category === event.target.value
           )
       })}
-      else {
+      else { /* when size has pre-existing value, user selects a category */
         this.setState({category: event.target.value, 
           products: library.products
           .slice()
@@ -227,16 +229,16 @@ class Functions extends React.Component {
   }
 
 
-  addToCart = (product) => {
+  addToCart = (product) => { /* add to cart when called in products and Cart */
     const cartItems = this.state.cartItems.slice();
     let alreadyInCart = false;
     cartItems.forEach(item =>{
-      if (item._id === product._id){
+      if (item._id === product._id){ /* increases number if already in cartItems*/
         item.count++;
         alreadyInCart = true;
       }
     });
-    if (!alreadyInCart) {
+    if (!alreadyInCart) { /* push item into the list if not in cartItems*/
       cartItems.push({...product, count: 1});
     }
     this.setState({cartItems})
@@ -245,7 +247,7 @@ class Functions extends React.Component {
 
   decrement =(product) => {
     const cartItems = this.state.cartItems.slice();
-      cartItems.forEach(item =>{
+      cartItems.forEach(item =>{ /* decreases number if already in cartItems*/
         if ((item._id === product._id) && item.count > 1){
           item.count--;
         }
@@ -255,12 +257,12 @@ class Functions extends React.Component {
 
   removeFromCart = (product) => {
     const cartItems = this.state.cartItems.slice();
-    this.setState({
+    this.setState({ /* remove from cartItems if called in Cart*/
       cartItems: cartItems.filter((x) => x._id !== product._id),
     });
   };
 
-  originalPage = (e) => {
+  originalPage = (e) => { /* return to default setting for items displayed*/
       this.setState({
           products: library.products,
           sort: "",
@@ -276,7 +278,7 @@ class Functions extends React.Component {
           <a href="/">Christmas Shopping cart</a>
         </header>
         <main>
-          <div className="content">
+          <div className="content"> {/* main for the display items, sidebar for Cart*/}
             <div className="main">
               <Filter count={this.state.products.length}
               size={this.state.size}

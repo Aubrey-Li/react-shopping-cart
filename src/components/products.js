@@ -5,7 +5,7 @@ export default class Products extends Component {
     render() {
         return (
             <div className="card-container">
-                <div className="container">
+                <div className="container"> {/* renders products as cards in the main page */}
                     {this.props.products.map(product => (
                     <div className=" card card border-danger mb-3" key={product._id}>
                         <img className="card-img-top" src={product.image} alt={product.title}></img>
@@ -18,7 +18,7 @@ export default class Products extends Component {
                         
                             <p className="card-text">Sizes: {product.availableSizes}</p>
                             <p className="card-text">Category: {product.category}</p>
-                            <div>
+                            <div> {/* add to cart-->calls addToCart function in Functions when onClick */}
                                 <button onClick={()=> this.props.addToCart(product)} type="button" className="btn btn-success">Add to Cart</button>
                             </div>
                         </div>

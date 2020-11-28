@@ -4,11 +4,10 @@ export default class Filter extends Component {
 
     render() {
         return (
-           
-                <div className="filter">
-                    <button className="btn btn-success" onClick={this.props.originalPage}>Default</button>
-                <div className="filter-result">{this.props.count} Products</div>
-                <div className="filter-sort">
+                <div className="filter"> 
+                    <button className="btn btn-success" onClick={this.props.originalPage}>Default</button> {/* button that calls return to default function */}
+                <div className="filter-result">{this.props.count} Products</div> {/* render total number of products on the page */}
+                <div className="filter-sort"> {/* sort-->calls sortProducts function in Functions */}
                     Order by Price {" "}
                     <select value={this.props.sort} onChange={this.props.sortProducts}>
                         <option>Select</option>
@@ -16,7 +15,7 @@ export default class Filter extends Component {
                         <option value="highest">Highest</option>
                     </select>
                 </div>
-                <div className="filter-size">
+                <div className="filter-size"> {/* filter by size-->calls filterProducts function in Functions */}
                     Sizes {" "}
                     <select value={this.props.size} onChange={this.props.filterProducts}>
                         <option value="">ALL</option>
@@ -29,7 +28,7 @@ export default class Filter extends Component {
                         <option value="XXL">XXL</option>
                     </select>
                 </div>
-                <div className="filter-category">
+                <div className="filter-category"> {/* filter by category-->calls filterCategory function in Functions */}
                     Category {" "}
                     <select value={this.props.category} onChange={this.props.filterCategory}>
                         <option value="">ALL</option>
