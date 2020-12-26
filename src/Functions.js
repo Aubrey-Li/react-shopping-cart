@@ -13,7 +13,9 @@ class Functions extends React.Component {
       size: "",
       sort: "",
       category: "",
-      cartItems: [],
+      cartItems: localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [],
       sortedProducts: [],
     };
   }
@@ -241,7 +243,8 @@ below: sortProducts function would could be triggered by onChange in Filter */
     if (!alreadyInCart) { /* push item into the list if not in cartItems*/
       cartItems.push({...product, count: 1});
     }
-    this.setState({cartItems})
+    this.setState({cartItems});
+    localStorage.setItem("cartItems", JSON.stringify(this.state.cartItems));
   };
 
 
@@ -252,7 +255,8 @@ below: sortProducts function would could be triggered by onChange in Filter */
           item.count--;
         }
       });
-      this.setState({cartItems})
+      this.setState({cartItems});
+      localStorage.setItem("cartItems", JSON.stringify(this.state.cartItems));
       };
 
   removeFromCart = (product) => {
@@ -260,6 +264,8 @@ below: sortProducts function would could be triggered by onChange in Filter */
     this.setState({ /* remove from cartItems if called in Cart*/
       cartItems: cartItems.filter((x) => x._id !== product._id),
     });
+    localStorage.setItem("cartItems", 
+    JSON.stringify(cartItems.filter((x) => x._id !== product._id)));
   };
 
   originalPage = (e) => { /* return to default setting for items displayed*/
@@ -270,6 +276,10 @@ below: sortProducts function would could be triggered by onChange in Filter */
           category: "",
       })
   }
+
+  createOrder =(order) => {
+    alert("Need to save order for " + order.name);
+  };
 
   render() {
     return (
@@ -296,7 +306,8 @@ below: sortProducts function would could be triggered by onChange in Filter */
               <Cart cartItems={this.state.cartItems} 
               removeFromCart={this.removeFromCart}
               decrement={this.decrement}
-              addToCart={this.addToCart}/>
+              addToCart={this.addToCart}
+              createOrder={this.createOrder}/>
             </div>
           </div>
         </main>
